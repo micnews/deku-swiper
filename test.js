@@ -43,5 +43,3 @@ jsdom.env('', [], function (err, window) {
     t.end();
   });
 });
-
-
