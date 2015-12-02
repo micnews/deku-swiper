@@ -5,13 +5,13 @@ import Swiper from 'swiper';
 import element from 'magic-virtual-element';
 export let name = 'Swiper';
 
-export function initialState (props) {
+function initialState (props) {
   return {
     swiper: null
   }
 }
 
-export function render ({ props, state }) {
+function render ({ props, state }) {
   var innerContent = props.children.map((el, index) => {
     return <div class='swiper__slide'>{el}</div>;
   });
@@ -21,7 +21,7 @@ export function render ({ props, state }) {
   </div>;
 }
 
-export function afterMount (component, el, setState) {
+function afterMount (component, el, setState) {
   var swiper = new Swiper(el, {
     wrapperClass: 'swiper__inner',
     slideClass: 'swiper__slide',
@@ -29,10 +29,14 @@ export function afterMount (component, el, setState) {
     slideVisibleClass: 'swiper__slide__visible',
     slideDuplicateClass: 'swiper__slide__duplicate',
     slideNextClass: 'swiper__slide__next',
-    slidePrevClass: 'swiper__slide__prev'
+    slidePrevClass: 'swiper__slide__prev',
+    slidesPerView: 2,
+    centeredSlides: true
   });
 
   setState({
     swiper: swiper
   });
 }
+
+export default { initialState, render, afterMount };

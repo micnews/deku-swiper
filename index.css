@@ -1,0 +1,12 @@
+.swiper {
+  width: 100%;
+}
+
+.swiper__inner {
+  display: inline-flex;
+}
+
+.swiper__slide {
+  float: left;
+  align-items: center;
+}
