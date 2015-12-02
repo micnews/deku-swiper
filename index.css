@@ -1,5 +1,6 @@
 .swiper {
   width: 100%;
+  overflow: hidden;
 }
 
 .swiper__inner {

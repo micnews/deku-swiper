@@ -31,7 +31,8 @@ export function afterMount ({ props }, el, setState) {
     slideNextClass: 'swiper__slide__next',
     slidePrevClass: 'swiper__slide__prev',
     slidesPerView: props['slides-per-view'],
-    centeredSlides: props['centered-slides']
+    centeredSlides: props['centered-slides'],
+    initialSlide: props['initial-slide']
   });
 
   setState({
