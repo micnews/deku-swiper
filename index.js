@@ -21,7 +21,7 @@ function render ({ props, state }) {
   </div>;
 }
 
-function afterMount (component, el, setState) {
+function afterMount ({ props }, el, setState) {
   var swiper = new Swiper(el, {
     wrapperClass: 'swiper__inner',
     slideClass: 'swiper__slide',
@@ -30,8 +30,8 @@ function afterMount (component, el, setState) {
     slideDuplicateClass: 'swiper__slide__duplicate',
     slideNextClass: 'swiper__slide__next',
     slidePrevClass: 'swiper__slide__prev',
-    slidesPerView: 2,
-    centeredSlides: true
+    slidesPerView: props['slides-per-view'],
+    centeredSlides: props['centered-slides']
   });
 
   setState({
