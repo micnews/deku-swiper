@@ -21,6 +21,14 @@ export function render ({ props, state }) {
   </div>);
 }
 
+export function afterRender ({ state }, el) {
+  const { swiper } = state;
+
+  if (swiper) {
+    swiper.onResize();
+  }
+}
+
 export function afterMount ({ props }, el, setState) {
   let swiper = null;
 
@@ -56,4 +64,4 @@ export function afterMount ({ props }, el, setState) {
   });
 }
 
-export default { initialState, render, afterMount };
+export default { initialState, render, afterRender, afterMount };
