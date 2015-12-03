@@ -44,6 +44,18 @@ export function afterMount ({ props }, el, setState) {
     }
   }
 
+  function handleTransitionStart () {
+    if (swiper && props['onTransitionStart']) {
+      props['onTransitionStart'](swiper.activeIndex);
+    }
+  }
+
+  function handleTransitionEnd () {
+    if (swiper && props['onTransitionEnd']) {
+      props['onTransitionEnd'](swiper.activeIndex);
+    }
+  }
+
   swiper = new Swiper(el, {
     wrapperClass: 'swiper__inner',
     slideClass: 'swiper__slide',
@@ -56,7 +68,9 @@ export function afterMount ({ props }, el, setState) {
     centeredSlides: props['centered-slides'],
     initialSlide: props['initial-slide'],
     onSlideChangeStart: handleSlideChangeStart,
-    onSlideChangeEnd: handleSlideChangeEnd
+    onSlideChangeEnd: handleSlideChangeEnd,
+    onTransitionStart: handleTransitionStart,
+    onTransitionEnd: handleTransitionEnd
   });
 
   setState({
