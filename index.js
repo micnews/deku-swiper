@@ -11,6 +11,22 @@ export function initialState (props) {
   };
 }
 
+function prevClick (e, { state }, setState) {
+  if (!state.swiper) {
+    return;
+  }
+
+  state.swiper.slidePrev();
+}
+
+function nextClick (e, { state }, setState) {
+  if (!state.swiper) {
+    return;
+  }
+
+  state.swiper.slideNext();
+}
+
 export function render ({ props, state }) {
   var innerContent = props.children.map((el, index) => {
     return <div class='swiper__slide'>{el}</div>;
@@ -18,6 +34,8 @@ export function render ({ props, state }) {
 
   return (<div class='swiper'>
     <div class='swiper__inner'>{innerContent}</div>
+    <div class='swiper__arrow swiper__arrow-left' onClick={prevClick}></div>
+    <div class='swiper__arrow swiper__arrow-right' onClick={nextClick}></div>
   </div>);
 }
 
@@ -70,7 +88,10 @@ export function afterMount ({ props }, el, setState) {
     onSlideChangeStart: handleSlideChangeStart,
     onSlideChangeEnd: handleSlideChangeEnd,
     onTransitionStart: handleTransitionStart,
-    onTransitionEnd: handleTransitionEnd
+    onTransitionEnd: handleTransitionEnd,
+    onClick: function (swiper, e) {
+      // TODO: swiper click
+    }
   });
 
   setState({
