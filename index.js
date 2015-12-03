@@ -1,9 +1,9 @@
 'use strict';
 /** @jsx element */
 
-import Swiper from 'swiper';
 import element from 'magic-virtual-element';
 export let name = 'Swiper';
+let Swiper = null;
 
 export function initialState (props) {
   return {
@@ -49,6 +49,9 @@ export function afterRender ({ state }, el) {
 
 export function afterMount ({ props }, el, setState) {
   let swiper = null;
+  if (!Swiper) {
+    Swiper = require('swiper');
+  }
 
   function handleSlideChangeStart () {
     if (swiper && props['onSlideChangeStart']) {
