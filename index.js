@@ -22,7 +22,21 @@ export function render ({ props, state }) {
 }
 
 export function afterMount ({ props }, el, setState) {
-  var swiper = new Swiper(el, {
+  let swiper = null;
+
+  function handleSlideChangeStart () {
+    if (swiper && props['onSlideChangeStart']) {
+      props['onSlideChangeStart'](swiper.activeIndex);
+    }
+  }
+
+  function handleSlideChangeEnd () {
+    if (swiper && props['onSlideChangeEnd']) {
+      props['onSlideChangeEnd'](swiper.activeIndex);
+    }
+  }
+
+  swiper = new Swiper(el, {
     wrapperClass: 'swiper__inner',
     slideClass: 'swiper__slide',
     slideActiveClass: 'swiper__slide__active',
@@ -32,7 +46,9 @@ export function afterMount ({ props }, el, setState) {
     slidePrevClass: 'swiper__slide__prev',
     slidesPerView: props['slides-per-view'],
     centeredSlides: props['centered-slides'],
-    initialSlide: props['initial-slide']
+    initialSlide: props['initial-slide'],
+    onSlideChangeStart: handleSlideChangeStart,
+    onSlideChangeEnd: handleSlideChangeEnd
   });
 
   setState({
