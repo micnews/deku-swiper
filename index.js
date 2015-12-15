@@ -90,6 +90,7 @@ export function afterMount ({ props }, el, setState) {
     initialSlide: props['initial-slide'],
     breakpoints: props['breakpoints'],
     spaceBetween: props['space-between'],
+    loop: props['loop'],
     onSlideChangeStart: handleSlideChangeStart,
     onSlideChangeEnd: handleSlideChangeEnd,
     onTransitionStart: handleTransitionStart,
