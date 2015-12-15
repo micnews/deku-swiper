@@ -38,7 +38,7 @@ export function render ({ props, state }) {
     </div>
     <div class='swiper__arrow swiper__arrow-left' onClick={prevClick}></div>
     <div class='swiper__arrow swiper__arrow-right' onClick={nextClick}></div>
-  </div>)
+  </div>);
 }
 
 export function afterRender ({ state }, el) {

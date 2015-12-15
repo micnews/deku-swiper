@@ -27,16 +27,18 @@ jsdom.env('', [], function (err, window) {
     ));
 
     t.equal(html, tsml`
-      <div class="swiper">
-        <div class="swiper__inner">
-          <div class="swiper__slide">
-            <div class="slide-1"></div>
-          </div>
-          <div class="swiper__slide">
-            <div class="slide-2"></div>
-          </div>
-          <div class="swiper__slide">
-            <div class="slide-3"></div>
+      <div>
+        <div class="swiper">
+          <div class="swiper__inner">
+            <div class="swiper__slide">
+              <div class="slide-1"></div>
+            </div>
+            <div class="swiper__slide">
+              <div class="slide-2"></div>
+            </div>
+            <div class="swiper__slide">
+              <div class="slide-3"></div>
+            </div>
           </div>
         </div>
         <div class="swiper__arrow swiper__arrow-left"></div>
