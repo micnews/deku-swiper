@@ -88,6 +88,8 @@ export function afterMount ({ props }, el, setState) {
     slidesPerView: props['slides-per-view'],
     centeredSlides: props['centered-slides'],
     initialSlide: props['initial-slide'],
+    breakpoints: props['breakpoints'],
+    spaceBetween: props['space-between'],
     onSlideChangeStart: handleSlideChangeStart,
     onSlideChangeEnd: handleSlideChangeEnd,
     onTransitionStart: handleTransitionStart,
