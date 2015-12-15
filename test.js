@@ -39,6 +39,8 @@ jsdom.env('', [], function (err, window) {
             <div class="slide-3"></div>
           </div>
         </div>
+        <div class="swiper__arrow swiper__arrow-left"></div>
+        <div class="swiper__arrow swiper__arrow-right"></div>
       </div>`);
     t.end();
   });
