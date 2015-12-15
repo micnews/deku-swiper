@@ -36,7 +36,7 @@ export function render ({ props, state }) {
     <div class='swiper'>
       <div class='swiper__inner'>{innerContent}</div>
     </div>
-    <div class='swiper__arrow swiper__arrow-left' onClick={prevClick}></div>,
+    <div class='swiper__arrow swiper__arrow-left' onClick={prevClick}></div>
     <div class='swiper__arrow swiper__arrow-right' onClick={nextClick}></div>
   </div>)
 }
