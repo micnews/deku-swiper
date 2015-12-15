@@ -32,11 +32,13 @@ export function render ({ props, state }) {
     return <div class='swiper__slide'>{el}</div>;
   });
 
-  return (<div class='swiper'>
-    <div class='swiper__inner'>{innerContent}</div>
-    <div class='swiper__arrow swiper__arrow-left' onClick={prevClick}></div>
+  return (<div>
+    <div class='swiper'>
+      <div class='swiper__inner'>{innerContent}</div>
+    </div>
+    <div class='swiper__arrow swiper__arrow-left' onClick={prevClick}></div>,
     <div class='swiper__arrow swiper__arrow-right' onClick={nextClick}></div>
-  </div>);
+  </div>)
 }
 
 export function afterRender ({ state }, el) {
@@ -77,7 +79,7 @@ export function afterMount ({ props }, el, setState) {
     }
   }
 
-  swiper = new Swiper(el, {
+  swiper = new Swiper(el.querySelector('.swiper'), {
     wrapperClass: 'swiper__inner',
     slideClass: 'swiper__slide',
     slideActiveClass: 'swiper__slide__active',
