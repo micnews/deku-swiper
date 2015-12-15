@@ -1,6 +1,6 @@
 {
   "name": "deku-swiper",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "dist/index.js",
   "scripts": {
     "test": "npm run lint && babel-tape-runner test.js",
