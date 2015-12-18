@@ -22,7 +22,8 @@
   "description": "Swiper carousel deku component",
   "dependencies": {
     "magic-virtual-element": "^1.0.6",
-    "swiper": "^3.2.6"
+    "swiper": "^3.2.6",
+    "xtend": "^4.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.2.0",

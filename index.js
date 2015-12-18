@@ -2,6 +2,7 @@
 /** @jsx element */
 
 import element from 'magic-virtual-element';
+import extend from 'xtend';
 export let name = 'Swiper';
 let Swiper = null;
 
@@ -49,37 +50,30 @@ export function afterRender ({ state }, el) {
   }
 }
 
+export function afterUpdate ({ state: { swiper }, props: { activeSlide } }) {
+  if (swiper && typeof activeSlide === 'number') {
+    swiper.slideTo(activeSlide);
+  }
+}
+
 export function afterMount ({ props }, el, setState) {
   let swiper = null;
   if (!Swiper) {
     Swiper = require('swiper');
   }
 
-  function handleSlideChangeStart () {
-    if (swiper && props['onSlideChangeStart']) {
-      props['onSlideChangeStart'](swiper.activeIndex);
-    }
+  function forward (name) {
+    return function () {
+      if (swiper && props[name]) {
+        props[name]({
+          activeIndex: swiper.activeIndex,
+          clickedIndex: swiper.clickedIndex
+        });
+      }
+    };
   }
 
-  function handleSlideChangeEnd () {
-    if (swiper && props['onSlideChangeEnd']) {
-      props['onSlideChangeEnd'](swiper.activeIndex);
-    }
-  }
-
-  function handleTransitionStart () {
-    if (swiper && props['onTransitionStart']) {
-      props['onTransitionStart'](swiper.activeIndex);
-    }
-  }
-
-  function handleTransitionEnd () {
-    if (swiper && props['onTransitionEnd']) {
-      props['onTransitionEnd'](swiper.activeIndex);
-    }
-  }
-
-  swiper = new Swiper(el.querySelector('.swiper'), {
+  const opts = extend(props, {
     wrapperClass: 'swiper__inner',
     slideClass: 'swiper__slide',
     slideActiveClass: 'swiper__slide__active',
@@ -87,24 +81,19 @@ export function afterMount ({ props }, el, setState) {
     slideDuplicateClass: 'swiper__slide__duplicate',
     slideNextClass: 'swiper__slide__next',
     slidePrevClass: 'swiper__slide__prev',
-    slidesPerView: props['slides-per-view'],
-    centeredSlides: props['centered-slides'],
-    initialSlide: props['initial-slide'],
-    breakpoints: props['breakpoints'],
-    spaceBetween: props['space-between'],
-    loop: props['loop'],
-    onSlideChangeStart: handleSlideChangeStart,
-    onSlideChangeEnd: handleSlideChangeEnd,
-    onTransitionStart: handleTransitionStart,
-    onTransitionEnd: handleTransitionEnd,
-    onClick: function (swiper, e) {
-      // TODO: swiper click
-    }
+    onSlideChangeStart: forward('onSlideChangeStart'),
+    onSlideChangeEnd: forward('onSlideChangeEnd'),
+    onTransitionStart: forward('onTransitionStart'),
+    onTransitionEnd: forward('onTransitionEnd'),
+    onClick: forward('onClick'),
+    initialSlide: props.activeSlide
   });
+
+  swiper = new Swiper(el.querySelector('.swiper'), opts);
 
   setState({
     swiper: swiper
   });
 }
 
-export default { initialState, render, afterRender, afterMount };
+export default { initialState, render, afterRender, afterMount, afterUpdate };
