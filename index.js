@@ -86,7 +86,7 @@ export function afterMount ({ props }, el, setState) {
     onTransitionStart: forward('onTransitionStart'),
     onTransitionEnd: forward('onTransitionEnd'),
     onClick: forward('onClick'),
-    initialSlide: props.activeSlide
+    initialSlide: props.activeSlide || 0
   });
 
   swiper = new Swiper(el.querySelector('.swiper'), opts);
