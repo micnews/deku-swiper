@@ -2,6 +2,7 @@
 /** @jsx element */
 
 import element from 'magic-virtual-element';
+import extend from 'xtend';
 export let name = 'Swiper';
 let Swiper = null;
 
@@ -79,7 +80,7 @@ export function afterMount ({ props }, el, setState) {
     }
   }
 
-  swiper = new Swiper(el.querySelector('.swiper'), {
+  const opts = extend(props, {
     wrapperClass: 'swiper__inner',
     slideClass: 'swiper__slide',
     slideActiveClass: 'swiper__slide__active',
@@ -87,12 +88,6 @@ export function afterMount ({ props }, el, setState) {
     slideDuplicateClass: 'swiper__slide__duplicate',
     slideNextClass: 'swiper__slide__next',
     slidePrevClass: 'swiper__slide__prev',
-    slidesPerView: props['slides-per-view'],
-    centeredSlides: props['centered-slides'],
-    initialSlide: props['initial-slide'],
-    breakpoints: props['breakpoints'],
-    spaceBetween: props['space-between'],
-    loop: props['loop'],
     onSlideChangeStart: handleSlideChangeStart,
     onSlideChangeEnd: handleSlideChangeEnd,
     onTransitionStart: handleTransitionStart,
@@ -101,6 +96,8 @@ export function afterMount ({ props }, el, setState) {
       // TODO: swiper click
     }
   });
+
+  swiper = new Swiper(el.querySelector('.swiper'), opts);
 
   setState({
     swiper: swiper
