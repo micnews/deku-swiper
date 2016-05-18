@@ -89,6 +89,8 @@ export function afterMount ({ props }, el, setState) {
     onTransitionStart: forward('onTransitionStart'),
     onTransitionEnd: forward('onTransitionEnd'),
     slideToClickedSlide: props.slideToClickedSlide,
+    mousewheelControl: props.mousewheelControl,
+    mousewheelForceToAxis: props.mousewheelForceToAxis,
     onClick: forward('onClick'),
     centeredSlides: props.centeredSlides || undefined,
     slidesPerView: props.slidesPerView || undefined,
