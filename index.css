@@ -4,10 +4,11 @@
 }
 
 .swiper__inner {
-  display: inline-flex;
+  display: flex;
 }
 
 .swiper__slide {
   float: left;
   align-items: center;
+  flex-shrink: 0;
 }
